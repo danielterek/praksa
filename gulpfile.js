@@ -20,11 +20,11 @@ gulp.task('browserSync', function() {
  });
  
 gulp.task('watch', function(){ 
-   gulp.watch('app/scss/**/*.scss', gulp.series(['sass'])); 
+   gulp.watch('app/scss/**/*.scss', gulp.series('sass')); 
   // Other watchers
 });
 
-gulp.task('default', ['browserSync', 'sass'], function (){
-  gulp.watch('app/scss/**/*.scss', gulp.series['sass']);
+gulp.task('default', gulp.series('browserSync', 'sass'), function (){
+  gulp.watch('app/scss/**/*.scss', gulp.series('sass'));
 // Other watchers 
 });
