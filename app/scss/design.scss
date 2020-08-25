@@ -1,4 +1,7 @@
+@import "breakpoints.scss";
+
 $headings: #00516d;
+$footerclr: #73a8c8d2;
 
 * {
   margin: 0;
@@ -8,7 +11,7 @@ $headings: #00516d;
 
 body {
   background: #fff;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Open Sans' ,Arial, Helvetica, sans-serif;
   font-weight: 600;
   font-size: 16px;
 }
@@ -33,8 +36,40 @@ a {
     padding: 5px;
   }
 
+  &__hamburger{
+    background-color:white;
+    border: 0;
+    cursor: pointer;
+    font-size: 25px;
+    color: $headings;
+
+    @include media('>=phone', '<tablet'){
+      &{
+        display: block;
+      }  
+    }
+
+    @include media('>tablet'){
+      &{
+        display: none;
+      }  
+    }
+
+    &:focus{
+      outline: none;
+    }
+  }
+
   &__navstop {
     list-style: none;
+  }
+
+  nav{
+    @include media('>=phone', '<tablet'){
+      &{
+        display: none;
+      }  
+    }
   }
 
   &__link {
@@ -42,7 +77,7 @@ a {
     padding: 0 35px;
     color: $headings;
     letter-spacing: 1px;
-    font-size: 17px;
+    font-size: 17px;   
   }
 
   &__link a:link {
@@ -65,7 +100,15 @@ a {
     padding: 12px 30px;
     border-radius: 4px;
     background: $headings;
+
+    @include media('>=phone', '<tablet'){
+      &{
+        display: none;
+      }
+    }
   }
+
+  
 }
 
 .secondnav {
@@ -113,11 +156,24 @@ a {
   padding: 19px 0px;
   text-transform: uppercase;
   font-weight: 900;
+
+  @include media('>=phone', '<tablet'){
+    &{
+      padding-top: 45px;
+      font-size: 20px;
+    }  
+  }
 }
 
 .fullpicture {
   width: 100%;
   padding: 18px 0;
+
+  @include media('>=phone', '<tablet'){
+    &{
+      display: none;
+    }  
+  }
 }
 
 .rnd {
@@ -129,6 +185,13 @@ a {
   font-size: 19px;
   margin: auto;
   font-weight: 500;
+
+  @include media('>=phone', '<tablet'){
+    &{
+      margin: auto 30px;
+      max-width: 100%;
+    }  
+  }
 }
 
 .container {
@@ -149,25 +212,58 @@ a {
     max-width: 1100px;
     display: flex;
     justify-content: space-between;
+
+    @include media('>=phone', '<tablet'){
+      &{
+        flex-wrap: wrap-reverse;
+      }  
+    }
   }
   &__first_right {
     width: calc(50% - 35px);
     padding: 0 0 60px 0;
+
+    @include media('>=phone', '<tablet'){
+      &{
+        width:100%;
+
+      }  
+    }
   }
   &__lorem {
     text-align: left;
     line-height: 1.5;
     padding-top: 15px;
     font-weight: 500;
+
+    @include media('>=phone', '<tablet'){
+      &{
+        margin: 0 8px;
+        text-align: justify;
+      }  
+    }
   }
 
   & h3 {
     color: $headings;
     font-weight: 700;
+
+    @include media('>=phone', '<tablet'){
+      &{
+        padding-top: 30px;
+        margin: 0 8px;
+      }  
+    }
   }
 
   &__firstpic {
     width: calc(50% - 35px);
+
+    @include media('>=phone', '<tablet'){
+      &{
+        width: 100%;
+      }  
+    }
   }
 
   &__secondrow {
@@ -175,16 +271,34 @@ a {
     max-width: 1100px;
     display: flex;
     justify-content: space-between;
+
+    @include media('>=phone', '<tablet'){
+      &{
+        flex-wrap: wrap;
+      }  
+    }
   }
 
   &__second_left {
     width: calc(50% - 35px);
     padding: 60px 0 60px 0;
+
+    @include media('>=phone', '<tablet'){
+      &{
+        width: 100%;
+      }  
+    }
   }
 
   &__secondpic {
     width: calc(50% - 35px);
     padding: 60px 0 60px 0;
+
+    @include media('>=phone', '<tablet'){
+      &{
+        width: 100%;
+      }  
+    }
   }
 
   &__loremsecond {
@@ -192,6 +306,13 @@ a {
     line-height: 1.5;
     padding-top: 30px;
     font-weight: 500;
+
+    @include media('>=phone', '<tablet'){
+      &{
+        margin: 0 8px;
+        text-align: justify;
+      }  
+    }
   }
 
   &__thirdrow {
@@ -199,16 +320,34 @@ a {
     max-width: 1100px;
     display: flex;
     justify-content: space-between;
+
+    @include media('>=phone', '<tablet'){
+      &{
+        flex-wrap: wrap-reverse;
+      }  
+    }
   }
 
   &__thirdpic {
     width: calc(50% - 35px);
     padding: 60px 0 60px 0;
+
+    @include media('>=phone', '<tablet'){
+      &{
+        width: 100%;
+      }  
+    }
   }
 
   &__third_right {
     width: calc(50% - 35px);
     padding: 60px 0 60px 0;
+
+    @include media('>=phone', '<tablet'){
+      &{
+        width: 100%;
+      }  
+    }
   }
 
   &__loremthird {
@@ -216,6 +355,13 @@ a {
     line-height: 1.5;
     padding-top: 30px;
     font-weight: 400;
+
+    @include media('>=phone', '<tablet'){
+      &{
+        margin: 0 8px;
+        text-align: justify;
+      }  
+    }
   }
 }
 
@@ -248,11 +394,25 @@ a {
     text-align: left;
     font-size: 22px;
     text-transform: uppercase;
+
+    @include media('>=phone', '<tablet'){
+      &{
+        margin: 0 8px;
+      }  
+    }
+
   }
 
   &__leftside {
     width: 50%;
     margin-top: 8px;
+
+    @include media('>=phone', '<tablet'){
+      &{
+        width: 100%;
+        flex-wrap: wrap;
+      }  
+    }
   }
 
   &__fourth {
@@ -264,18 +424,38 @@ a {
     font-weight: 400;
     line-height: 2;
     padding-bottom: 53px;
+
+    @include media('>=phone', '<tablet'){
+      &{
+        margin: 0 8px;
+      }  
+    }
   }
 
   &__rightside {
     width: 50%;
     flex-direction: column;
+
+    @include media('>=phone', '<tablet'){
+      &{
+        width: 100%;
+        flex-wrap: wrap;
+      }
   }
+}
 
   &__right {
     background-color: #fff;
     color: #000;
     padding: 26px 65px 32px 50px;
     margin: 17px 30px;
+
+    @include media('>=phone', '<tablet'){
+      &{
+        padding: 26px 19px 32px 19px;
+        margin: 17px 30px;
+      }
+    }
   }
 
   &__right h4 {
@@ -361,6 +541,16 @@ a {
   &__pctrs {
     width: 210px;
     height: 210px;
+
+    @include media('>=phone', '<tablet'){
+      &{
+        width: 100%;
+        height: 300px;
+        margin: 42px 23px;
+        overflow: hidden;
+        padding: 0 43px;
+      }
+    }
   }
 }
 
@@ -371,11 +561,24 @@ a {
   padding: 23px 30px 35px 30px;
   background-color: #062a36;
 
+  @include media('>=phone', '<tablet'){
+    &{
+      display: none;
+    }
+  }
+
+  @include media('<phone'){
+    &{
+      display: none;
+    }
+  }
+
   &__lowernav {
     list-style: none;
     color: #fff;
     font-size: 25px;
     font-weight: 300;
+    
   }
 
   &__lowernav li {
@@ -430,6 +633,12 @@ a {
     font-size: 17px;
     font-weight: 600;
     list-style: none;
+
+    @include media('>=phone', '<tablet'){
+      &{
+        padding: 0 0;
+      }
+    }
   }
   &__fb i {
     padding: 8px 14px;
@@ -460,21 +669,21 @@ a {
   justify-content: center;
   align-items: center;
   padding: 13px 0;
-  color: #5e6f75;
+  color: $footerclr;
   font-weight: 500;
 
   & a {
-    color: #5e6f75;
+    color: $footerclr;
     padding-left: 3px;
   }
 }
 
 .policy a:link {
-  color: #5e6f75;
+  color: $footerclr;
   text-decoration: underline;
 }
 
 .policy a:hover {
-  color: #5e6f75;
+  color: $footerclr;
   text-decoration: underline;
 }
