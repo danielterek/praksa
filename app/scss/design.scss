@@ -11,13 +11,125 @@ $footerclr: #73a8c8d2;
 
 body {
   background: #fff;
-  font-family: 'Open Sans' ,Arial, Helvetica, sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 600;
   font-size: 16px;
 }
 
 a {
   text-decoration: none;
+}
+
+.mobile {
+  top: 0;
+  left: 0;
+  padding: 0 50px 0 30px;
+  width: 100%;
+  box-sizing: border-box;
+
+  &__logo {
+    width: 180px;
+    height: 68px;
+    padding: 5px;
+    float: left;
+  }
+
+  @include media(">=menu") {
+    & {
+      display: none;
+    }
+  }
+
+  &__buy {
+    cursor: pointer;
+    letter-spacing: 1px;
+    color: #fff;
+    font-size: 16px;
+    padding: 12px 30px;
+    border-radius: 4px;
+    background: $headings;
+
+    &:active {
+      color: $headings;
+      background: whitesmoke;
+    }
+
+    &:hover {
+      color: $headings;
+      background: whitesmoke;
+    }
+
+    @include media(">=phone", "<=menu") {
+      & {
+        display: block;
+      }
+    }
+    @include media(">=menu") {
+      & {
+        display: none;
+      }
+    }
+  }
+
+  &__mob {
+    float: right;
+    position: absolute;
+    width: 100%;
+    height: calc(55vh - 50px);
+    background: #051724;
+    transition: 0.5s;
+    left: -100%;
+    top: 68px;
+    text-decoration: none;
+
+    & ul {
+      padding-top: 10px;
+      display: block;
+      text-align: center;
+    }
+
+    & ul li a {
+      height: 50px;
+      line-height: 50px;
+      padding: 0 20px;
+      color: #fff;
+    }
+
+    &.active {
+      left: 0;
+    }
+
+    /*   @include media('>=menu'){
+      &{
+        display: none;
+      }  
+    }
+*/
+    @include media(">=phone", "<=menu") {
+      & {
+        display: block;
+      }
+    }
+  }
+
+  &__menutoggle {
+    font-size: 27px;
+    line-height: 60px;
+    cursor: pointer;
+    display: none;
+    float: right;
+    color: $headings;
+
+    @include media(">=phone", "<=menu") {
+      & {
+        display: block;
+      }
+    }
+  }
+
+  &__bars {
+    color: black;
+  }
 }
 
 .header {
@@ -30,45 +142,42 @@ a {
   align-items: center;
   padding: 20px 30px;
 
+  @include media("<=menu") {
+    & {
+      display: none;
+    }
+  }
+
   &__logo {
     width: 180px;
     height: 68px;
     padding: 5px;
   }
 
-  &__hamburger{
-    background-color:white;
-    border: 0;
-    cursor: pointer;
-    font-size: 25px;
-    color: $headings;
-
-    @include media('>=phone', '<tablet'){
-      &{
-        display: block;
-      }  
-    }
-
-    @include media('>tablet'){
-      &{
-        display: none;
-      }  
-    }
-
-    &:focus{
-      outline: none;
-    }
-  }
-
   &__navstop {
     list-style: none;
+
+    & a:link {
+      color: $headings;
+    }
+    & a:hover {
+      color: $headings;
+    }
+
+    & a:visited {
+      color: $headings;
+    }
+
+    & a:active {
+      color: $headings;
+    }
   }
 
-  nav{
-    @include media('>=phone', '<tablet'){
-      &{
+  nav {
+    @include media(">=phone", "<=menu") {
+      & {
         display: none;
-      }  
+      }
     }
   }
 
@@ -77,19 +186,7 @@ a {
     padding: 0 35px;
     color: $headings;
     letter-spacing: 1px;
-    font-size: 17px;   
-  }
-
-  &__link a:link {
-    color: $headings;
-  }
-
-  &__link a:hover {
-    color: $headings;
-  }
-
-  &__link a:visited {
-    color: $headings;
+    font-size: 17px;
   }
 
   &__buy {
@@ -101,14 +198,12 @@ a {
     border-radius: 4px;
     background: $headings;
 
-    @include media('>=phone', '<tablet'){
-      &{
+    @include media(">=phone", "<=menu") {
+      & {
         display: none;
       }
     }
   }
-
-  
 }
 
 .secondnav {
@@ -143,6 +238,17 @@ a {
     font-weight: 100;
     color: #848484;
   }
+  @include media(">=phone", "<=menu") {
+    & {
+      padding-top: 30px;
+      width: 100%;
+    }
+  }
+  @include media("<436px") {
+    & {
+      display: none;
+    }
+  }
 }
 
 .control {
@@ -157,11 +263,11 @@ a {
   text-transform: uppercase;
   font-weight: 900;
 
-  @include media('>=phone', '<tablet'){
-    &{
+  @include media(">=phone", "<tablet") {
+    & {
       padding-top: 45px;
       font-size: 20px;
-    }  
+    }
   }
 }
 
@@ -169,15 +275,15 @@ a {
   width: 100%;
   padding: 18px 0;
 
-  @include media('>=phone', '<tablet'){
-    &{
+  @include media(">=phone", "<tablet") {
+    & {
       display: none;
-    }  
+    }
   }
 }
 
 .rnd {
-  max-width: 65%;
+  max-width: 1220px;
   text-align: center;
   padding: 40px 0px 65px 0;
   color: #292b2b;
@@ -186,11 +292,18 @@ a {
   margin: auto;
   font-weight: 500;
 
-  @include media('>=phone', '<tablet'){
-    &{
+  @include media(">=phone", "<tablet") {
+    & {
       margin: auto 30px;
       max-width: 100%;
-    }  
+      padding-bottom: 22px;
+    }
+  }
+
+  @include media(">=wide") {
+    & {
+      max-width: 1600px;
+    }
   }
 }
 
@@ -200,34 +313,64 @@ a {
   display: flex;
   padding: 60px 0;
 
+  @include media(">=phone", "<tablet") {
+    & {
+      padding-top: 30px;
+    }
+  }
+
+  @include media(">=wide") {
+    & {
+      max-width: 1400px;
+    }
+  }
+
   &__centerpics {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
     max-width: 1100px;
+
+    @include media(">=wide") {
+      & {
+        max-width: 1400px;
+      }
+    }
   }
 
   &__firstrow {
-    padding: 0 0 60px 0;
+    padding-bottom: 60px;
     max-width: 1100px;
     display: flex;
     justify-content: space-between;
 
-    @include media('>=phone', '<tablet'){
-      &{
+    @include media(">=phone", "<tablet") {
+      & {
         flex-wrap: wrap-reverse;
-      }  
+        padding-bottom: 10px;
+      }
+    }
+    @include media(">=wide") {
+      & {
+        max-width: 1400px;
+      }
     }
   }
   &__first_right {
     width: calc(50% - 35px);
-    padding: 0 0 60px 0;
+    padding-bottom: 60px;
 
-    @include media('>=phone', '<tablet'){
-      &{
-        width:100%;
+    @include media(">=phone", "<tablet") {
+      & {
+        width: 100%;
+        padding-bottom: 50px;
+      }
+    }
 
-      }  
+    @include media(">=wide") {
+      & {
+        max-width: 1400px;
+      }
     }
   }
   &__lorem {
@@ -236,11 +379,17 @@ a {
     padding-top: 15px;
     font-weight: 500;
 
-    @include media('>=phone', '<tablet'){
-      &{
+    @include media(">=phone", "<tablet") {
+      & {
         margin: 0 8px;
         text-align: justify;
-      }  
+      }
+    }
+
+    @include media(">=wide") {
+      & {
+        font-size: 19px;
+      }
     }
   }
 
@@ -248,34 +397,53 @@ a {
     color: $headings;
     font-weight: 700;
 
-    @include media('>=phone', '<tablet'){
-      &{
+    @include media(">=phone", "<tablet") {
+      & {
         padding-top: 30px;
         margin: 0 8px;
-      }  
+      }
+    }
+
+    @include media(">=wide") {
+      & {
+        font-size: 24px;
+      }
     }
   }
 
   &__firstpic {
     width: calc(50% - 35px);
 
-    @include media('>=phone', '<tablet'){
-      &{
+    @include media(">=phone", "<tablet") {
+      & {
         width: 100%;
-      }  
+      }
+    }
+
+    @include media(">=wide") {
+      & {
+        max-width: 1400px;
+      }
     }
   }
 
   &__secondrow {
-    padding: 0 0 60px 0;
+    padding-bottom: 60px;
     max-width: 1100px;
     display: flex;
     justify-content: space-between;
 
-    @include media('>=phone', '<tablet'){
-      &{
+    @include media(">=phone", "<tablet") {
+      & {
         flex-wrap: wrap;
-      }  
+        padding-bottom: 0px;
+      }
+    }
+
+    @include media(">=wide") {
+      & {
+        max-width: 1400px;
+      }
     }
   }
 
@@ -283,10 +451,17 @@ a {
     width: calc(50% - 35px);
     padding: 60px 0 60px 0;
 
-    @include media('>=phone', '<tablet'){
-      &{
+    @include media(">=phone", "<tablet") {
+      & {
         width: 100%;
-      }  
+        padding: 25px 0 5px 0;
+      }
+    }
+
+    @include media(">=wide") {
+      & {
+        max-width: 1400px;
+      }
     }
   }
 
@@ -294,10 +469,17 @@ a {
     width: calc(50% - 35px);
     padding: 60px 0 60px 0;
 
-    @include media('>=phone', '<tablet'){
-      &{
+    @include media(">=phone", "<tablet") {
+      & {
         width: 100%;
-      }  
+        padding-bottom: 5px;
+      }
+    }
+
+    @include media(">=wide") {
+      & {
+        max-width: 1400px;
+      }
     }
   }
 
@@ -307,24 +489,37 @@ a {
     padding-top: 30px;
     font-weight: 500;
 
-    @include media('>=phone', '<tablet'){
-      &{
+    @include media(">=phone", "<tablet") {
+      & {
         margin: 0 8px;
         text-align: justify;
-      }  
+      }
+    }
+
+    @include media(">=wide") {
+      & {
+        font-size: 19px;
+      }
     }
   }
 
   &__thirdrow {
-    padding: 0 0 60px 0;
+    padding-bottom: 60px;
     max-width: 1100px;
     display: flex;
     justify-content: space-between;
 
-    @include media('>=phone', '<tablet'){
-      &{
+    @include media(">=phone", "<tablet") {
+      & {
         flex-wrap: wrap-reverse;
-      }  
+        padding-bottom: 0px;
+      }
+    }
+
+    @include media(">=wide") {
+      & {
+        max-width: 1400px;
+      }
     }
   }
 
@@ -332,10 +527,17 @@ a {
     width: calc(50% - 35px);
     padding: 60px 0 60px 0;
 
-    @include media('>=phone', '<tablet'){
-      &{
+    @include media(">=phone", "<tablet") {
+      & {
         width: 100%;
-      }  
+        padding: 25px 0 25px 0;
+      }
+    }
+
+    @include media(">=wide") {
+      & {
+        max-width: 1400px;
+      }
     }
   }
 
@@ -343,10 +545,17 @@ a {
     width: calc(50% - 35px);
     padding: 60px 0 60px 0;
 
-    @include media('>=phone', '<tablet'){
-      &{
+    @include media(">=phone", "<tablet") {
+      & {
         width: 100%;
-      }  
+        padding: 15px 0 25px 0;
+      }
+    }
+
+    @include media(">=wide") {
+      & {
+        max-width: 1400px;
+      }
     }
   }
 
@@ -356,11 +565,17 @@ a {
     padding-top: 30px;
     font-weight: 400;
 
-    @include media('>=phone', '<tablet'){
-      &{
+    @include media(">=phone", "<tablet") {
+      & {
         margin: 0 8px;
         text-align: justify;
-      }  
+      }
+    }
+
+    @include media(">=wide") {
+      & {
+        font-size: 19px;
+      }
     }
   }
 }
@@ -373,6 +588,18 @@ a {
     margin: 0 auto;
     display: flex;
     padding: 120px 0 300px 0;
+
+    @include media(">=phone", "<tablet") {
+      & {
+        padding-bottom: 75px;
+      }
+    }
+
+    @include media(">=wide") {
+      & {
+        max-width: 1400px;
+      }
+    }
   }
 
   &__lowerpics {
@@ -381,6 +608,12 @@ a {
     flex-wrap: wrap;
     width: 100%;
     max-width: 1100px;
+
+    @include media(">=wide") {
+      & {
+        max-width: 1400px;
+      }
+    }
   }
 
   &__heating {
@@ -395,28 +628,39 @@ a {
     font-size: 22px;
     text-transform: uppercase;
 
-    @include media('>=phone', '<tablet'){
-      &{
+    @include media(">=phone", "<tablet") {
+      & {
         margin: 0 8px;
-      }  
+      }
     }
 
+    @include media(">=wide") {
+      & {
+        font-size: 26px;
+      }
+    }
   }
 
   &__leftside {
     width: 50%;
     margin-top: 8px;
 
-    @include media('>=phone', '<tablet'){
-      &{
+    @include media(">=phone", "<tablet") {
+      & {
         width: 100%;
         flex-wrap: wrap;
-      }  
+      }
     }
   }
 
   &__fourth {
     width: 100%;
+
+    @include media(">=phone", "<tablet") {
+      & {
+        padding-bottom: 35px;
+      }
+    }
   }
 
   &__lowerlorem {
@@ -425,10 +669,16 @@ a {
     line-height: 2;
     padding-bottom: 53px;
 
-    @include media('>=phone', '<tablet'){
-      &{
+    @include media(">=phone", "<tablet") {
+      & {
         margin: 0 8px;
-      }  
+      }
+    }
+
+    @include media(">=wide") {
+      & {
+        font-size: 19px;
+      }
     }
   }
 
@@ -436,13 +686,19 @@ a {
     width: 50%;
     flex-direction: column;
 
-    @include media('>=phone', '<tablet'){
-      &{
+    @include media(">=phone", "<tablet") {
+      & {
         width: 100%;
         flex-wrap: wrap;
       }
+    }
+
+    @include media(">=wide") {
+      & {
+        max-width: 1400px;
+      }
+    }
   }
-}
 
   &__right {
     background-color: #fff;
@@ -450,27 +706,44 @@ a {
     padding: 26px 65px 32px 50px;
     margin: 17px 30px;
 
-    @include media('>=phone', '<tablet'){
-      &{
+    @include media(">=phone", "<tablet") {
+      & {
         padding: 26px 19px 32px 19px;
         margin: 17px 30px;
       }
     }
-  }
+    @include media(">=wide") {
+      & {
+        padding-top: 23px;
+      }
+    }
 
-  &__right h4 {
-    padding-bottom: 9px;
-    color: $headings;
-    font-weight: 700;
-    text-align: left;
-    padding-left: 10px;
-  }
+    & h4 {
+      padding-bottom: 9px;
+      color: $headings;
+      font-weight: 700;
+      text-align: left;
+      padding-left: 10px;
 
-  &__right p {
-    margin-bottom: 5px;
-    text-align: justify;
-    line-height: 1.56;
-    font-weight: 500;
+      @include media(">=wide") {
+        & {
+          font-size: 21px;
+        }
+      }
+    }
+
+    & p {
+      margin-bottom: 5px;
+      text-align: justify;
+      line-height: 1.56;
+      font-weight: 500;
+
+      @include media(">=wide") {
+        & {
+          font-size: 18px;
+        }
+      }
+    }
   }
 
   &__readmore {
@@ -478,15 +751,21 @@ a {
     font-size: 14px;
     padding-top: 35px;
     font-weight: 400;
-  }
 
-  &__readmore a:link {
-    color: #0b5d79;
-    font-weight: 400;
-  }
+    & a:link {
+      color: #0b5d79;
+      font-weight: 400;
+    }
 
-  &__readmore a:hover {
-    color: #0b5d79;
+    & a:hover {
+      color: #0b5d79;
+    }
+
+    @include media(">=wide") {
+      & {
+        font-size: 15px;
+      }
+    }
   }
 
   &__sound {
@@ -494,6 +773,11 @@ a {
     height: 50px;
     float: left;
     padding-right: 5px;
+    @include media(">=wide") {
+      & {
+        margin-top: 10px;
+      }
+    }
   }
 
   &__htng {
@@ -501,6 +785,11 @@ a {
     height: 50px;
     float: left;
     padding-right: 4px;
+    @include media(">=wide") {
+      & {
+        margin-top: 10px;
+      }
+    }
   }
 
   &__license {
@@ -508,6 +797,11 @@ a {
     height: 50px;
     float: left;
     padding-right: 5px;
+    @include media(">=wide") {
+      & {
+        margin-top: 10px;
+      }
+    }
   }
 }
 
@@ -519,9 +813,15 @@ a {
   letter-spacing: 1px;
   justify-content: center;
   align-items: center;
-  padding: 85px 0 0 0;
+  padding-top: 85px;
   text-transform: uppercase;
   font-weight: 900;
+
+  @include media(">=phone", "<tablet") {
+    & {
+      padding-top: 55px;
+    }
+  }
 }
 
 .glry {
@@ -530,20 +830,38 @@ a {
   padding: 120px 0 180px 0;
   margin: 0 auto;
 
+  @include media(">=wide") {
+    & {
+      max-width: 1400px;
+    }
+  }
+
   &__lower-algn {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     width: 100%;
     max-width: 1100px;
+    @include media(">=wide") {
+      & {
+        max-width: 1400px;
+      }
+    }
   }
 
   &__pctrs {
     width: 210px;
     height: 210px;
 
-    @include media('>=phone', '<tablet'){
-      &{
+    @include media(">=wide") {
+      & {
+        width: 260px;
+        height: 235px;
+      }
+    }
+
+    @include media(">=phone", "<tablet") {
+      & {
         width: 100%;
         height: 300px;
         margin: 42px 23px;
@@ -561,14 +879,14 @@ a {
   padding: 23px 30px 35px 30px;
   background-color: #062a36;
 
-  @include media('>=phone', '<tablet'){
-    &{
+  @include media(">=phone", "<tablet") {
+    & {
       display: none;
     }
   }
 
-  @include media('<phone'){
-    &{
+  @include media("<phone") {
+    & {
       display: none;
     }
   }
@@ -578,7 +896,6 @@ a {
     color: #fff;
     font-size: 25px;
     font-weight: 300;
-    
   }
 
   &__lowernav li {
@@ -588,25 +905,25 @@ a {
     letter-spacing: 1px;
     font-size: 17px;
     font-weight: 600;
-  }
 
-  &__lowernav li a:visited {
-    color: #fff;
-    text-decoration: none;
-  }
+    & a {
+      text-decoration: none;
 
-  &__lowernav li a:link {
-    color: #fff;
-    text-decoration: none;
-  }
+      &:visited {
+        color: #fff;
+        text-decoration: none;
+      }
 
-  &__lowernav li a {
-    text-decoration: none;
-  }
+      &:link {
+        color: #fff;
+        text-decoration: none;
+      }
 
-  &__lowernav li a:visited {
-    color: #fff;
-    text-decoration: none;
+      &:visited {
+        color: #fff;
+        text-decoration: none;
+      }
+    }
   }
 }
 
@@ -624,6 +941,16 @@ a {
     padding: 8px 8px;
     border-radius: 50%;
     background: #253e46;
+
+    &:active {
+      color: $headings;
+      background-color: #fff;
+    }
+
+    &:hover {
+      color: $headings;
+      background-color: #fff;
+    }
   }
   &__btns {
     display: inline-block;
@@ -634,14 +961,14 @@ a {
     font-weight: 600;
     list-style: none;
 
-    @include media('>=phone', '<tablet'){
-      &{
+    @include media(">=phone", "<tablet") {
+      & {
         padding: 0 0;
       }
     }
   }
   &__fb i {
-    padding: 8px 14px;
+    padding: 9px 8px 9px 9px;
   }
 
   &__tw i {
